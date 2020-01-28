@@ -13,6 +13,8 @@
 
 	</div><!-- #content -->
 
+	<h3>header 3</h3>
+
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'sample-theme' ) ); ?>">
