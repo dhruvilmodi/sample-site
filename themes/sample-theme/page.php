@@ -22,6 +22,19 @@ get_header();
 		while ( have_posts() ) :
 			the_post();
 
+			if(function_exists ('get_field')){
+				$featured_video = get_field('sample_theme_featured_video_file');
+				var_dump($featured_video['url']);
+				if ($featured_video){
+					?>
+					<video controls>
+					<source src="<?php echo $featured_video['url'] ?>" type="<?php echo $featured_video['mime_type'] ?>">
+					Your browser does not support the video tag.
+					</video> 
+					<?php
+				}
+			}
+
 			get_template_part( 'template-parts/content', 'page' );
 
 			// If comments are open or we have at least one comment, load up the comment template.

@@ -11,3 +11,9 @@ Text Domain: sample-theme
 Tags: 
 */
 
+.has-strong-magenta-background-color {
+    background-color: #FFBC49;
+}
+.has-very-light-gray-color {
+    color: #990000;
+}

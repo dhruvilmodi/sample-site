@@ -73,6 +73,88 @@ if ( ! function_exists( 'sample_theme_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		/** 
+		 * Add theme support
+		*/
+		add_theme_support('wp-block-styles');
+
+		/** 
+		 * add theme support for align wide
+		*/
+		add_theme_support( 'align-wide' );
+
+		/**
+		 * add support for custom color palette
+		 */
+		add_theme_support( 'editor-color-palette', array(
+			array(
+				'name' => esc_html__( 'Blue', 'themeLangDomain' ),
+				'slug' => 'blue',
+				'color' => '#59BACC',
+			),
+			array(
+				'name' => esc_html__( 'Green', 'themeLangDomain' ),
+				'slug' => 'green',
+				'color' => '#58AD69',
+			),
+			array(
+				'name' => esc_html__( 'Orange', 'themeLangDomain' ),
+				'slug' => 'orange',
+				'color' => '#FFBC49',
+			),
+			array(
+				'name' => esc_html__( 'Red', 'themeLangDomain' ),
+				'slug' => 'red',
+				'color' => '#990000',
+			),
+			array(
+				'name' => esc_html__( 'White', 'themeLangDomain' ),
+				'slug' => 'white',
+				'color' => '#FFF',
+			),
+			array(
+				'name' => esc_html__( 'Black', 'themeLangDomain' ),
+				'slug' => 'black',
+				'color' => '#000',
+			),
+		) );
+
+		/**
+		 * remove custom color palette
+		 */
+		add_theme_support( 'disable-custom-colors' );
+
+		/**
+		 * add support for font sizes
+		 */
+		add_theme_support( 'editor-font-sizes', array(
+			array(
+				'name' => __( 'Small', 'themeLangDomain' ),
+				'size' => 12,
+				'slug' => 'small'
+			),
+			array(
+				'name' => __( 'Regular', 'themeLangDomain' ),
+				'size' => 16,
+				'slug' => 'regular'
+			),
+			array(
+				'name' => __( 'Large', 'themeLangDomain' ),
+				'size' => 36,
+				'slug' => 'large'
+			),
+			array(
+				'name' => __( 'Huge', 'themeLangDomain' ),
+				'size' => 50,
+				'slug' => 'huge'
+			)
+		) );
+
+		/**
+		 * disable custom font sizes
+		 */
+		add_theme_support('disable-custom-font-sizes');
 	}
 endif;
 add_action( 'after_setup_theme', 'sample_theme_setup' );
@@ -115,6 +197,7 @@ add_action( 'widgets_init', 'sample_theme_widgets_init' );
  */
 function sample_theme_scripts() {
 	wp_enqueue_style( 'sample-theme-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'sample-theme-foundation', get_stylesheet_uri(). '/assets/css/vendor/foundation.min.css', null, '6.5.1' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -137,6 +220,11 @@ require get_template_directory() . '/inc/template-hooks.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * block editor addition
+ */
+require get_template_directory() . '/inc/block-editor.php';
 
 /**
  * Load Jetpack compatibility file.
